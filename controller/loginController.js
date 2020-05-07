@@ -24,7 +24,6 @@ module.exports = (function(app) {
     });
     // Login TO DB==================================================================
     app.post('/demo', urlencodedParser, function(req, res) {
-        console.log('user name is here for test :', req.body)
         dbo.collection('userprofile').findOne({ name: req.body.name }, function(err, user) {
             if (user === null) {
                 res.end("Login invalid");
@@ -40,6 +39,7 @@ module.exports = (function(app) {
     app.post('/regiterToDb', urlencodedParser, function(req, res) {
         var obj = JSON.stringify(req.body);
         var jsonObj = JSON.parse(obj);
+        console.log(obj);
         res.render('profile', { loginData: req.body });
     });
     //register profile to MongoDB================================================================
